@@ -1,0 +1,17 @@
+---
+title: Access-point authentication failure isolated
+date: 2026-08-15
+project: reticulum-field-router
+kind: failure
+summary: A misleading authentication timeout turned out to be a configuration-path problem rather than bad radio hardware.
+tags: [Linux, Debugging, Wi-Fi]
+---
+## Symptom
+
+The access-point connection failed during activation with an authentication-related timeout.
+
+## Lesson
+
+Error text describes where a process stopped, not necessarily the root cause. The useful path was to inspect the generated connection properties, verify the interface role, and reduce the configuration until the access point could be brought up deterministically.
+
+Failures stay in the log because the diagnostic path is often more reusable than the final command.

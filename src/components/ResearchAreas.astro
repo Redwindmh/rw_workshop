@@ -1,0 +1,9 @@
+---
+import Icon from './Icon.astro';
+const areas = [
+  ['chip','Embedded','Systems'],['radio','Radio','& Networks'],['drone','Robotics','& Drones'],['code','Software','& Data'],['gear','Mechanical','Design'],['wrench','Fabrication','& Tools'],['network','AI & Machine','Learning'],['satellite','Space','& Exploration']
+];
+---
+<div class="areas-grid">
+  {areas.map(([icon, line1, line2]) => <a href={`/lab/#${line1.toLowerCase().replace(/\W+/g,'-')}`}><Icon name={icon} size={28}/><strong>{line1}<br/>{line2}</strong></a>)}
+</div>

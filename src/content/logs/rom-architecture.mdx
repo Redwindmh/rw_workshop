@@ -1,0 +1,15 @@
+---
+title: ROM loading architecture redesign
+date: 2026-08-22
+project: handheld-emulator
+kind: design
+summary: Started separating ROM discovery, storage access, and emulator initialization into distinct responsibilities.
+tags: [Architecture, C, ESP32]
+---
+## Problem
+
+Loading a game is deceptively easy to implement in the wrong layer. A direct file-system call from emulator code works quickly, but makes every later storage change expensive.
+
+## Decision
+
+ROM discovery belongs to the application layer, storage access belongs behind a narrow interface, and the emulator core should receive data without knowing how it was found.

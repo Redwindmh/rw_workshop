@@ -1,0 +1,35 @@
+---
+import Icon from './Icon.astro';
+import BrandMark from './BrandMark.astro';
+const current = Astro.url.pathname;
+const nav = [
+  ['/', 'home', 'Home', 'Workshop index'],
+  ['/projects/', 'projects', 'Projects', 'Active systems'],
+  ['/logs/', 'logs', 'Logs', 'Field notes'],
+  ['/lab/', 'lab', 'Fields', 'Disciplines'],
+  ['/archive/', 'archive', 'Archive', 'Project record'],
+  ['/now/', 'now', 'Now', 'Current work'],
+  ['/about/', 'about', 'About', 'Workshop profile'],
+];
+const isActive = (href: string) => href === '/' ? current === '/' : current.startsWith(href);
+---
+<aside class="site-rail">
+  <a class="rail-mark" href="/" aria-label="Redwind Workshop home"><BrandMark size={72}/></a>
+  <nav class="rail-nav" aria-label="Primary navigation">
+    {nav.map(([href, icon, label, caption]) => (
+      <a href={href} class:list={["rail-link", { active: isActive(href) }]}>
+        <Icon name={icon} size={21} />
+        <span><strong>{label}</strong><small>{caption}</small></span>
+      </a>
+    ))}
+  </nav>
+  <div class="rail-motto">
+    <div class="rail-schematic" aria-hidden="true"><BrandMark size={86} title=""/></div>
+    <p>Build.<br/>Learn.<br/>Document.<br/>Share.</p>
+  </div>
+</aside>
+
+<details class="mobile-nav">
+  <summary><span><BrandMark size={42}/><b>Redwind Workshop</b></span><Icon name="menu" size={22}/></summary>
+  <nav>{nav.map(([href, icon, label]) => <a href={href} class:list={{ active: isActive(href) }}><Icon name={icon} size={18}/>{label}</a>)}</nav>
+</details>

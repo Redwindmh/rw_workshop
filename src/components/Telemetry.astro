@@ -1,0 +1,15 @@
+---
+import Icon from './Icon.astro';
+---
+<div class="telemetry-card">
+  <div class="telemetry-chart" aria-hidden="true">
+    <svg viewBox="0 0 360 140"><g class="chart-grid"><path d="M0 28h360M0 56h360M0 84h360M0 112h360M72 0v140M144 0v140M216 0v140M288 0v140"/></g><polyline class="chart-main" points="0,94 18,75 36,83 54,46 72,59 90,39 108,70 126,52 144,62 162,31 180,50 198,45 216,77 234,59 252,70 270,37 288,52 306,42 324,69 342,55 360,60"/><polyline class="chart-sub" points="0,109 24,100 48,106 72,92 96,98 120,91 144,104 168,94 192,99 216,88 240,94 264,87 288,101 312,91 336,96 360,89"/></svg>
+  </div>
+  <dl class="telemetry-values">
+    <div><dt><Icon name="battery" size={15}/> Bench power</dt><dd>12.1 V</dd></div>
+    <div><dt><Icon name="radio" size={15}/> Radio link</dt><dd>Ready</dd></div>
+    <div><dt><Icon name="network" size={15}/> Workshop net</dt><dd>Online</dd></div>
+    <div><dt><Icon name="logs" size={15}/> Log entries</dt><dd>143</dd></div>
+    <div><dt><Icon name="projects" size={15}/> Active systems</dt><dd>07</dd></div>
+  </dl>
+</div>

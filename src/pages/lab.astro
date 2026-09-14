@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+const areas=[['embedded','chip','Embedded Systems','Firmware, real-time systems, sensors, buses, and strange little computers.'],['radio','radio','Radio & Networks','LoRa, Reticulum, amateur radio, resilient networking, and field communications.'],['robotics','drone','Robotics & Drones','Mobile machines, autonomous systems, sensing, control, and unmanned platforms.'],['software','code','Software & Data','Systems software, tools, knowledge systems, visualization, and infrastructure.'],['mechanical','gear','Mechanical Design','Structures, mechanisms, kinematics, packaging, and electromechanical integration.'],['fabrication','wrench','Fabrication & Tools','Soldering, machining, 3D printing, repair, prototyping, and workshop practice.'],['ai-machine','network','AI & Machine Learning','Local inference, embedded intelligence, perception, and human-machine interfaces.'],['space','satellite','Space & Exploration','Spaceflight technology, remote systems, telemetry, and exploration engineering.']];
+---
+<BaseLayout title="Fields">
+<section class="page-hero compact-hero"><div class="eyebrow"><span></span> Workshop disciplines</div><h1>Fields of work</h1><p>A map of the disciplines feeding the projects. The borders are intentionally porous.</p></section>
+<section class="content-section lab-grid">{areas.map(([id,icon,title,desc])=><article id={id}><span class="lab-icon"><Icon name={icon} size={35}/></span><h2>{title}</h2><p>{desc}</p><a href="/projects/">Explore related systems →</a></article>)}</section>
+</BaseLayout>

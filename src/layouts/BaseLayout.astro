@@ -1,0 +1,36 @@
+---
+import SiteNavigation from '../components/SiteNavigation.astro';
+import StationHeader from '../components/StationHeader.astro';
+import '../styles/global.css';
+import '../styles/redwind.css';
+interface Props { title?: string; description?: string; }
+const { title = 'Redwind Workshop', description = 'Independent engineering, field systems, builds, and workshop notes.' } = Astro.props;
+const pageTitle = title === 'Redwind Workshop' ? title : `${title} — Redwind Workshop`;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <meta name="description" content={description} />
+  <meta name="theme-color" content="#0b0c0e" />
+  <meta name="color-scheme" content="dark" />
+  <meta property="og:site_name" content="Redwind Workshop" />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content="/brand/redwind-badge.webp" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <title>{pageTitle}</title>
+  <script is:inline>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+  <div class="site-shell">
+    <SiteNavigation />
+    <div class="site-main">
+      <StationHeader />
+      <main><slot /></main>
+      <footer class="site-footer"><span>Redwind Workshop // independent engineering & field systems</span><span>Build · Learn · Document · Share</span></footer>
+    </div>
+  </div>
+</body>
+</html>

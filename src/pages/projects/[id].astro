@@ -1,0 +1,24 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectVisual from '../../components/ProjectVisual.astro';
+import Icon from '../../components/Icon.astro';
+export async function getStaticPaths(){ const projects = await getCollection('projects'); return projects.map(project => ({params:{id:project.id},props:{project}})); }
+const { project } = Astro.props;
+const { Content } = await render(project);
+const logs = (await getCollection('logs')).filter(l => l.data.project === project.id).sort((a,b)=>b.data.date.getTime()-a.data.date.getTime());
+---
+<BaseLayout title={project.data.title} description={project.data.summary}>
+  <section class="project-detail-hero">
+    <div class="detail-copy"><a class="back-link" href="/projects/">← Projects / {project.data.code}</a><div class="eyebrow"><span></span>{project.data.category}</div><h1>{project.data.title}</h1><p>{project.data.mission ?? project.data.summary}</p><div class="detail-status"><span class={`kind-badge status-${project.data.status}`}>{project.data.status}</span><span>Started {new Intl.DateTimeFormat('en',{month:'short',year:'numeric'}).format(project.data.started)}</span></div></div>
+    <ProjectVisual icon={project.data.icon} code={project.data.code}/>
+  </section>
+  <div class="detail-grid">
+    <article class="prose-panel prose"><Content /></article>
+    <aside class="project-sidebar">
+      <section><h2>System profile</h2><dl><div><dt>Designation</dt><dd>{project.data.code}</dd></div><div><dt>Status</dt><dd>{project.data.status}</dd></div><div><dt>Completion</dt><dd>{project.data.progress}%</dd></div><div><dt>Category</dt><dd>{project.data.category}</dd></div></dl><div class="progress-track large"><span style={`width:${project.data.progress}%`}></span></div></section>
+      <section><h2>Technologies</h2><div class="tag-cloud">{project.data.tags.map((tag:string)=><span>{tag}</span>)}</div></section>
+      <section><h2>Project transmissions</h2>{logs.length ? <div class="sidebar-logs">{logs.slice(0,6).map(log=><a href={`/logs/${log.id}/`}><time>{new Intl.DateTimeFormat('en',{month:'short',day:'2-digit'}).format(log.data.date)}</time><span>{log.data.title}</span><Icon name="arrow" size={14}/></a>)}</div> : <p class="muted">No field notes logged yet.</p>}</section>
+    </aside>
+  </div>
+</BaseLayout>

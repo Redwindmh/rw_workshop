@@ -1,0 +1,13 @@
+---
+title: Platform overview RFC revised
+date: 2026-08-16
+project: knowledge-platform
+kind: milestone
+summary: Tightened the boundary between knowledge source, compilation, immutable runtime packages, and presentation layers.
+tags: [Specifications, Architecture, Knowledge Graphs]
+---
+## Why the RFC matters
+
+The project has enough surface area that a vague architecture would let every subsystem absorb responsibilities from every other subsystem.
+
+The revised overview treats the specification as a contract: source knowledge is authored, the compiler validates and transforms it, runtime packages are immutable, and applications consume those packages rather than editing them in place.

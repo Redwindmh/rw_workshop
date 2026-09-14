@@ -1,0 +1,10 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+const projects=(await getCollection('projects')).filter(p=>p.data.status==='active').sort((a,b)=>b.data.progress-a.data.progress);
+---
+<BaseLayout title="Now">
+<section class="page-hero compact-hero"><div class="eyebrow"><span></span> Live status</div><h1>Now</h1><p>A lightweight status board for what currently has attention in the workshop.</p></section>
+<section class="content-section now-layout"><div class="now-card"><h2>Currently building</h2>{projects.map(p=><a href={`/projects/${p.id}/`}><Icon name={p.data.icon} size={22}/><span><strong>{p.data.title}</strong><small>{p.data.summary}</small></span><em>{p.data.progress}%</em></a>)}</div><div class="now-note"><span><Icon name="leaf" size={25}/></span><div><h2>Workshop note</h2><p>This page is intentionally simple. Later it can become the landing place for real workshop telemetry, current experiments, recently played music, environmental sensor data, or whatever else makes the workshop feel alive.</p></div></div></section>
+</BaseLayout>

@@ -1,0 +1,11 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+const logs = (await getCollection('logs')).sort((a,b)=>b.data.date.getTime()-a.data.date.getTime());
+const iconFor=(kind:string)=>({milestone:'check','field-test':'radio',design:'code',build:'wrench',research:'lab',failure:'spark',repair:'wrench',experiment:'lab',discovery:'spark'}[kind]??'logs');
+---
+<BaseLayout title="Field Logs" description="Chronological field notes and development logs.">
+  <section class="page-hero compact-hero"><div class="eyebrow"><span></span> Workshop transmissions</div><h1>Field logs</h1><p>The chronological record: experiments, design decisions, repairs, failures, field tests, and milestones.</p></section>
+  <section class="content-section"><div class="log-timeline">{logs.map(log=><a class="timeline-entry" href={`/logs/${log.id}/`}><time><strong>{new Intl.DateTimeFormat('en',{day:'2-digit'}).format(log.data.date)}</strong><span>{new Intl.DateTimeFormat('en',{month:'short',year:'numeric'}).format(log.data.date)}</span></time><div class="timeline-node"><Icon name={iconFor(log.data.kind)} size={18}/></div><div class="timeline-copy"><div><span class={`kind-badge kind-${log.data.kind}`}>{log.data.kind.replace('-',' ')}</span><small>{log.data.project}</small></div><h2>{log.data.title}</h2><p>{log.data.summary}</p></div><Icon class="timeline-arrow" name="arrow" size={19}/></a>)}</div></section>
+</BaseLayout>

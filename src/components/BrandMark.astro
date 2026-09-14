@@ -1,0 +1,11 @@
+---
+interface Props { size?: number; class?: string; title?: string; }
+const { size = 56, class: className, title = 'Redwind Workshop' } = Astro.props;
+---
+<img
+  class:list={['brand-mark', className]}
+  src="/brand/rw_workshop_icon.png"
+  width={size}
+  height={size}
+  alt={title}
+/>

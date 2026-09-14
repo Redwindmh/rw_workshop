@@ -1,0 +1,20 @@
+---
+import Icon from './Icon.astro';
+import ProjectVisual from './ProjectVisual.astro';
+const { project } = Astro.props;
+const { title, code, category, icon, summary, status, progress, tags } = project.data;
+const statusLabel = status === 'research' ? 'In research' : status;
+---
+<article class="project-card">
+  <div class="project-card-meta"><span><Icon name={icon} size={13} /> {category}</span><span>{code}</span></div>
+  <ProjectVisual icon={icon} code={code} compact />
+  <div class="project-card-body">
+    <h3><a href={`/projects/${project.id}/`}>{title}</a></h3>
+    <p>{summary}</p>
+    <div class:list={["status-line", `status-${status}`]}><span class="status-dot"></span>{statusLabel}</div>
+    <div class="tag-line">{tags.slice(0, 4).map((tag: string) => <span>{tag}</span>)}</div>
+    <div class="progress-row"><span>Build completion</span><strong>{progress}%</strong></div>
+    <div class="progress-track"><span style={`width:${progress}%`}></span></div>
+    <a class="project-open" href={`/projects/${project.id}/`}>Open project <Icon name="arrow" size={15} /></a>
+  </div>
+</article>

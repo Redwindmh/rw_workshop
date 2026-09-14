@@ -1,0 +1,13 @@
+---
+import Icon from './Icon.astro';
+interface Props { icon?: string; code?: string; compact?: boolean; }
+const { icon = 'spark', code = 'PX-000', compact = false } = Astro.props;
+---
+<div class:list={["project-visual", { compact }]} aria-hidden="true">
+  <div class="visual-grid"></div>
+  <div class="visual-orbit orbit-a"></div>
+  <div class="visual-orbit orbit-b"></div>
+  <div class="visual-core"><Icon name={icon} size={compact ? 48 : 74} strokeWidth={1.2} /></div>
+  <div class="visual-code">{code}</div>
+  <span class="visual-node n1"></span><span class="visual-node n2"></span><span class="visual-node n3"></span>
+</div>

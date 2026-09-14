@@ -1,0 +1,31 @@
+---
+title: Handheld Emulator
+code: RW-HH01
+category: Embedded Systems
+icon: chip
+summary: Portable retro-computing experiment built around an ESP32-class microcontroller and local storage.
+status: active
+progress: 67
+started: 2026-06-04
+tags: [ESP32, C, Emulation, Display, Storage]
+featured: false
+mission: Explore how far a small embedded platform can be pushed while keeping the firmware architecture understandable and maintainable.
+---
+## Objective
+
+Build a self-contained handheld emulator while treating the firmware as a real systems project rather than a single demonstration sketch.
+
+## Architecture goals
+
+The codebase is divided around responsibilities such as platform initialization, input, display, storage, ROM handling, and emulator integration. Features are added only when their ownership inside the architecture is clear.
+
+## Current focus
+
+The current development phase is centered on persistent state, storage layout, and making game loading independent from emulator internals.
+
+## Later work
+
+- improve boot and game-selection flow;
+- formalize storage APIs;
+- profile memory pressure;
+- document hardware revisions alongside firmware revisions.

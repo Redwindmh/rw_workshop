@@ -1,0 +1,43 @@
+---
+title: Reticulum Field Router
+code: RW-RN01
+category: Radio & Networks
+icon: radio
+summary: Portable network gateway designed around Reticulum, low-power radio, and a small Linux host.
+status: active
+progress: 43
+started: 2026-07-18
+tags: [Raspberry Pi, Linux, Reticulum, LoRa, RNode]
+featured: true
+mission: Build a deployable network node that can bridge a local workshop or field LAN into a resilient Reticulum-based communications system.
+---
+## Mission
+
+Create a compact field router that combines a conventional local network with a Reticulum interface. The long-term goal is a system that can be placed where ordinary infrastructure is unavailable or inconvenient and still provide useful application-level communications.
+
+## Current architecture
+
+The prototype is intentionally modular:
+
+- a small Linux computer provides routing and local services;
+- a Wi-Fi interface provides the local access network;
+- Reticulum handles the resilient overlay network;
+- an external RNode provides the radio interface;
+- configuration remains ordinary text wherever possible so the system is understandable and repairable.
+
+## Design principles
+
+### Keep the node comprehensible
+
+Field equipment should be diagnosable with standard tools. A future enclosure can be sophisticated; the internal system should remain boring enough to troubleshoot over SSH.
+
+### Separate layers cleanly
+
+Local networking, Reticulum transport, applications, and radio hardware should remain replaceable rather than becoming one monolithic appliance.
+
+## Next experiments
+
+1. Verify end-to-end application communication between two isolated LANs.
+2. Record latency and reliability under progressively worse radio conditions.
+3. Define a repeatable node configuration format.
+4. Design a field enclosure with accessible power, radio, and service connections.

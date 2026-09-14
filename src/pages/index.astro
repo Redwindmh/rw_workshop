@@ -1,0 +1,73 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ActivityFeed from '../components/ActivityFeed.astro';
+import ResearchAreas from '../components/ResearchAreas.astro';
+import Telemetry from '../components/Telemetry.astro';
+import ProjectVisual from '../components/ProjectVisual.astro';
+import Icon from '../components/Icon.astro';
+
+const projects = (await getCollection('projects')).sort((a,b) => Number(b.data.featured) - Number(a.data.featured));
+const activeProjects = projects.filter(p => ['active','research'].includes(p.data.status)).slice(0,4);
+const featured = projects.find(p => p.data.featured) ?? projects[0];
+const logs = (await getCollection('logs')).sort((a,b) => b.data.date.getTime() - a.data.date.getTime());
+const recent = logs.slice(0,6);
+const milestones = logs.filter(l => l.data.kind === 'milestone').slice(0,4);
+const categoryCounts = projects.reduce((acc: Record<string, number>, p) => { acc[p.data.category] = (acc[p.data.category] || 0) + 1; return acc; }, {});
+---
+<BaseLayout>
+  <Hero />
+
+  <section class="home-section project-section">
+    <SectionHeader number="02 /" title="Current projects" href="/projects/" linkText="View all projects" />
+    <div class="project-grid">{activeProjects.map(project => <ProjectCard project={project} />)}</div>
+  </section>
+
+  <div class="home-split">
+    <section class="home-section transmission-section">
+      <SectionHeader number="03 /" title="Latest transmissions" href="/logs/" linkText="View all logs" />
+      <ActivityFeed logs={recent} />
+    </section>
+    <section class="home-section featured-section">
+      <SectionHeader number="04 /" title="Featured build" />
+      <div class="featured-build">
+        <ProjectVisual icon={featured.data.icon} code={featured.data.code} />
+        <div class="featured-copy">
+          <div class="featured-top"><h3>{featured.data.title}</h3><span class={`kind-badge status-${featured.data.status}`}>{featured.data.status}</span></div>
+          <p>{featured.data.mission ?? featured.data.summary}</p>
+          <ul>{featured.data.tags.slice(0,5).map((tag: string) => <li><Icon name="check" size={14}/>{tag}</li>)}</ul>
+          <a class="button subtle" href={`/projects/${featured.id}/`}>View project <Icon name="arrow" size={16}/></a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="home-split exploration-split">
+    <section class="home-section areas-section">
+      <SectionHeader number="05 /" title="Areas of exploration" href="/lab/" linkText="Explore the fields" />
+      <ResearchAreas />
+    </section>
+    <section class="home-section telemetry-section">
+      <SectionHeader number="06 /" title="Workshop telemetry" />
+      <Telemetry />
+    </section>
+  </div>
+
+  <div class="home-split final-split">
+    <section class="home-section milestones-section">
+      <SectionHeader number="07 /" title="Recent milestones" href="/logs/" linkText="Field log" />
+      <div class="milestone-list">
+        {milestones.map(log => <a href={`/logs/${log.id}/`}><Icon name="check" size={18}/><time>{new Intl.DateTimeFormat('en',{month:'short',day:'2-digit'}).format(log.data.date).toUpperCase()}</time><span><strong>{log.data.title}</strong><small>{log.data.project}</small></span><em>Milestone</em></a>)}
+      </div>
+    </section>
+    <section class="home-section archive-section">
+      <SectionHeader number="08 /" title="Archive overview" href="/archive/" linkText="Browse archive" />
+      <div class="archive-grid">
+        {Object.entries(categoryCounts).slice(0,8).map(([name,count]) => <a href="/archive/"><Icon name={name.toLowerCase().includes('radio') ? 'radio' : name.toLowerCase().includes('embedded') ? 'chip' : name.toLowerCase().includes('robot') ? 'drone' : 'archive'} size={20}/><span><strong>{name}</strong><small>{String(count).padStart(2,'0')} projects</small></span></a>)}
+      </div>
+    </section>
+  </div>
+</BaseLayout>

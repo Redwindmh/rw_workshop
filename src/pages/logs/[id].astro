@@ -1,0 +1,13 @@
+---
+import { getCollection, render, getEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+export async function getStaticPaths(){const logs=await getCollection('logs');return logs.map(log=>({params:{id:log.id},props:{log}}));}
+const { log } = Astro.props;
+const { Content } = await render(log);
+const project = await getEntry('projects', log.data.project);
+---
+<BaseLayout title={log.data.title} description={log.data.summary}>
+  <section class="log-detail-hero"><a class="back-link" href="/logs/">← Field logs</a><div class="log-meta"><span class={`kind-badge kind-${log.data.kind}`}>{log.data.kind.replace('-',' ')}</span><time>{new Intl.DateTimeFormat('en',{dateStyle:'long'}).format(log.data.date)}</time></div><h1>{log.data.title}</h1><p>{log.data.summary}</p>{project && <a class="project-reference" href={`/projects/${project.id}/`}><Icon name={project.data.icon} size={18}/><span><small>Associated project</small><strong>{project.data.title}</strong></span><Icon name="arrow" size={17}/></a>}</section>
+  <article class="prose-panel log-prose prose"><Content /></article>
+</BaseLayout>

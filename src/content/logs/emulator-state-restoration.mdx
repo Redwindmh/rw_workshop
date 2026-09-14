@@ -1,0 +1,19 @@
+---
+title: Persistent state restoration working
+date: 2026-08-23
+project: handheld-emulator
+kind: milestone
+summary: Save-state persistence now survives a full restart and restores through the normal boot path.
+tags: [ESP32, Storage, Firmware]
+---
+## Objective
+
+Make state restoration a normal part of the application lifecycle rather than a special debug path.
+
+## Result
+
+The persistence path now behaves consistently across a complete restart. More importantly, the feature has a clear home in the storage and emulator boundaries rather than leaking file-system assumptions throughout the codebase.
+
+## Follow-up
+
+The next architecture pass should apply the same separation to ROM discovery and loading.

@@ -1,0 +1,54 @@
+---
+import Icon from './Icon.astro';
+---
+<section class="hero-panel">
+  <div class="hero-copy">
+    <div class="eyebrow"><span></span> Independent engineering // field systems</div>
+    <h1>Building things<br/><em>worth building.</em></h1>
+    <p>Embedded systems, radio, robotics, computing, fabrication, repair, and the field notes that connect them. Open knowledge. Real hardware. Shared progress.</p>
+    <div class="hero-actions"><a class="button primary" href="/projects/">Enter the workshop <Icon name="arrow" size={17}/></a><a class="text-link" href="/logs/">Read field notes</a></div>
+    <div class="hero-principles"><span>Persistent by design</span><span>Open schematics</span><span>Repairable</span></div>
+  </div>
+  <div class="hero-scene" aria-hidden="true">
+    <svg viewBox="0 0 760 430" role="presentation">
+      <defs>
+        <linearGradient id="night" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#0d1012"/><stop offset="1" stop-color="#070809"/></linearGradient>
+        <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#3c4247"/><stop offset=".5" stop-color="#15181b"/><stop offset="1" stop-color="#2b3034"/></linearGradient>
+        <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0v32" fill="none" stroke="#a7adb1" stroke-opacity=".08" stroke-width="1"/></pattern>
+      </defs>
+      <rect width="760" height="430" fill="url(#night)"/>
+      <rect width="760" height="430" fill="url(#grid)"/>
+      <g fill="none" stroke="#70777c" stroke-opacity=".25" stroke-width="1">
+        <path d="M0 340c90-34 150-48 235-22s150 3 230-13 170-12 295 28"/>
+        <path d="M0 357c86-27 164-31 231-8s142 4 236-11 174-4 293 31"/>
+        <path d="M0 374c101-20 164-20 240-3 93 20 151 5 230-5 101-13 182-2 290 25"/>
+      </g>
+      <g transform="translate(67 89)">
+        <path d="M30 230 134 58l119 12 82 160" fill="#101315" stroke="#7e878d" stroke-width="3"/>
+        <path d="m62 178 62-105 102 10-60 103Z" fill="#15191c" stroke="#aeb4b8" stroke-width="2"/>
+        <g stroke="#5e666b" stroke-width="1"><path d="m78 151 102 10M91 129l102 10M104 107l102 10M112 85l102 10"/><path d="m100 82-54 92M126 85l-54 92M153 87l-54 92M180 90l-54 92"/></g>
+        <path d="M147 188v42M115 230h66" stroke="#aeb4b8" stroke-width="4"/>
+        <text x="87" y="211" fill="#b5222a" font-family="monospace" font-size="9">SOLAR ARRAY / AUX</text>
+      </g>
+      <g transform="translate(320 175)">
+        <rect x="0" y="62" width="270" height="135" rx="5" fill="url(#metal)" stroke="#9ca3a7" stroke-width="2"/>
+        <rect x="17" y="80" width="102" height="79" rx="3" fill="#0d1012" stroke="#646c71"/>
+        <rect x="134" y="80" width="115" height="34" rx="3" fill="#0d1012" stroke="#646c71"/>
+        <rect x="134" y="126" width="55" height="33" rx="3" fill="#0d1012" stroke="#646c71"/>
+        <rect x="199" y="126" width="50" height="33" rx="3" fill="#0d1012" stroke="#646c71"/>
+        <path d="M14 171h240M32 62V38h190v24" stroke="#545b60"/>
+        <circle cx="35" cy="98" r="6" fill="#b5222a"/><circle cx="56" cy="98" r="6" fill="#555e64"/><circle cx="77" cy="98" r="6" fill="#555e64"/>
+        <path d="M214 80v-94M207-14h14M214-8l-19-28M214-8l19-28" stroke="#aeb4b8" stroke-width="3"/>
+        <g stroke="#b5222a" fill="none" stroke-width="2"><path d="M214-24c18 0 33-15 33-33"/><path d="M214-36c11 0 20-9 20-20"/></g>
+        <text x="16" y="188" fill="#a7adb1" font-family="monospace" font-size="9">RW-RN01 / FIELD NETWORK NODE</text>
+      </g>
+      <g stroke="#b5222a" stroke-width="1" fill="none">
+        <path d="M590 155h72v-38"/><path d="M662 117h16"/><path d="M523 359v27h90"/>
+      </g>
+      <g fill="#d7dadd" font-family="monospace" font-size="8"><text x="626" y="111">WB ANTENNA</text><text x="617" y="389">FIELD NODE / ACTIVE</text></g>
+      <g transform="translate(676 328)" stroke="#a7adb1" fill="none" stroke-width="1.5"><path d="M0 44 22 0l22 44M10 23h24M6 34h32M22 0v52"/><path d="M10 8C3 12 0 18 0 24M34 8c7 4 10 10 10 16" stroke="#b5222a"/></g>
+      <g opacity=".28" transform="translate(14 12)" stroke="#a7adb1" fill="none"><circle cx="670" cy="76" r="46"/><circle cx="670" cy="76" r="26"/><path d="M606 76h128M670 12v128"/></g>
+    </svg>
+    <div class="scene-screen"><span>FIELD STATUS</span><strong>NODE ONLINE</strong><small>Reticulum · LoRa · Wi-Fi</small></div>
+  </div>
+</section>

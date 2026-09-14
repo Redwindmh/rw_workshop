@@ -1,0 +1,17 @@
+{
+  "name": "redwind-workshop",
+  "type": "module",
+  "version": "0.2.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^7.0.7",
+    "astro": "^7.2.6"
+  }
+}

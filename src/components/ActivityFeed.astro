@@ -1,0 +1,16 @@
+---
+import Icon from './Icon.astro';
+const { logs = [] } = Astro.props;
+const iconFor = (kind: string) => ({ milestone: 'check', 'field-test': 'radio', design: 'code', build: 'wrench', research: 'lab', failure: 'spark', repair: 'wrench', experiment: 'lab', discovery: 'spark' }[kind] ?? 'logs');
+const formatDate = (date: Date) => new Intl.DateTimeFormat('en', { month: 'short', day: '2-digit' }).format(date).toUpperCase();
+---
+<div class="activity-feed">
+  {logs.map((log: any, i: number) => (
+    <a class="activity-row" href={`/logs/${log.id}/`}>
+      <span class="activity-icon"><Icon name={iconFor(log.data.kind)} size={18}/></span>
+      <time>{i === 0 ? 'LATEST' : formatDate(log.data.date)}</time>
+      <span class="activity-main"><strong>{log.data.title}</strong><small>{log.data.project}</small></span>
+      <span class={`kind-badge kind-${log.data.kind}`}>{log.data.kind.replace('-', ' ')}</span>
+    </a>
+  ))}
+</div>

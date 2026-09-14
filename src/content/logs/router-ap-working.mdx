@@ -1,0 +1,19 @@
+---
+title: Local access point configuration stabilized
+date: 2026-08-24
+project: reticulum-field-router
+kind: milestone
+summary: The field node now exposes a repeatable local wireless network configuration suitable for the next inter-node tests.
+tags: [Linux, Wi-Fi, Raspberry Pi]
+---
+## Result
+
+The access-point side of the node is now behaving predictably enough to stop treating basic Wi-Fi setup as an experimental variable.
+
+## What mattered
+
+The important outcome was not merely getting a client connected once. The configuration needed to survive a restart, remain easy to inspect remotely, and avoid accidentally introducing a default route that would distort later network tests.
+
+## Next
+
+Connect the Reticulum layer and verify application traffic between two otherwise isolated local networks.

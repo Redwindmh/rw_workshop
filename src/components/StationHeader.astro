@@ -1,0 +1,26 @@
+---
+import Icon from './Icon.astro';
+---
+<header class="station-header">
+  <div class="station-brand">
+    <a href="/" aria-label="Redwind Workshop home">
+      <img class="station-logo" src="/brand/rw_workshop_logo.png" width="330" height="110" alt="Redwind Workshop" />
+    </a>
+  </div>
+  <div class="station-stats" aria-label="Workshop status">
+    <div class="stat"><Icon name="battery" size={19}/><span><small>Bench power</small><strong>12.1 V</strong></span></div>
+    <div class="stat"><Icon name="network" size={19}/><span><small>Workshop net</small><strong class="status-online">Online</strong></span></div>
+    <div class="stat"><Icon name="temperature" size={19}/><span><small>Air temp</small><strong>24.8 °C</strong></span></div>
+    <div class="stat"><Icon name="now" size={19}/><span><small>Local time</small><strong data-station-time>--:-- JST</strong></span></div>
+  </div>
+</header>
+<script>
+  const el = document.querySelector('[data-station-time]');
+  const update = () => {
+    if (!el) return;
+    const time = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Tokyo', hour: '2-digit', minute: '2-digit', hour12: false }).format(new Date());
+    el.textContent = `${time} JST`;
+  };
+  update();
+  window.setInterval(update, 30000);
+</script>
