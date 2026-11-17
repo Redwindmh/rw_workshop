@@ -8,7 +8,9 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check:content": "node tools/field-log.mjs check",
+    "add:log": "node tools/field-log.mjs add-log"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.7",
