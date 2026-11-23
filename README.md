@@ -36,3 +36,7 @@ Build production output with:
 ```bash
 npm run build
 ```
+
+## Content automation
+
+Project pages and field logs already use Astro content collections. New field logs can be generated with `npm run add:log -- path/to/record.json`, validated using `npm run check:content`, and tested with `npm run build`. Propose changes via reviewed pull requests. See [publishing documentation](docs/PUBLISHING-PIPELINE.md) and [Hermes handoff](docs/HERMES-HANDOFF.md). Phase 1 does not deploy.
